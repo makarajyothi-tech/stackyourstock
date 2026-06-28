@@ -234,29 +234,39 @@
     .hero p{font-size:15px;}
     .stage{padding:24px 16px 50px;}
     .col-headers{display:none;}
+
     .stock-row{
-      grid-template-columns:28px 40px 1fr;
-      grid-template-areas:
-        "rank logo name"
-        "cmp  cmp  cmp"
-        "tgt  tgt  tgt"
-        "detail detail detail";
-      row-gap:8px;
+      display:flex;
+      flex-wrap:wrap;
       padding:16px 14px;
     }
-    .rank-num{grid-area:rank;}
-    .logo-badge{grid-area:logo;width:36px;height:36px;}
-    .name-block{grid-area:name;}
-    .stock-row > .metric:nth-of-type(1){grid-area:cmp;}
-    .stock-row > .metric:nth-of-type(2){grid-area:tgt;}
-    .row-detail{grid-area:detail;}
+    .rank-num{
+      width:28px;flex:none;
+      align-self:flex-start;
+      padding-top:8px;
+    }
+    .logo-badge{
+      width:36px;height:36px;flex:none;
+      margin-right:12px;
+    }
+    .name-block{
+      flex:1 1 auto;
+      min-width:0;
+    }
     .metric{
+      flex:1 1 100%;
+      width:100%;
       text-align:left;
       display:flex;
       align-items:baseline;
       gap:8px;
-      padding-top:6px;
+      margin-top:10px;
+      padding-top:8px;
       border-top:1px dashed var(--line);
+    }
+    .row-detail{
+      flex:1 1 100%;
+      width:100%;
     }
     .metric .label-mobile{
       display:inline-block;
@@ -265,7 +275,7 @@
       color:var(--muted);
       text-transform:uppercase;
       letter-spacing:0.4px;
-      width:80px;
+      width:60px;
       flex:none;
     }
     .metric .small{margin-top:0;}
