@@ -17,13 +17,20 @@
     --muted:#6b6b78;
   }
   *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+  html,body{margin:0;padding:0;max-width:100%;overflow-x:hidden;}
   body{
-    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-family:-apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color:var(--ink);
     background:#fff;
   }
   a{color:inherit;text-decoration:none;}
+  a:focus-visible, .nav-tag:focus-visible{
+    outline:2px solid var(--pink-deep);
+    outline-offset:2px;
+    border-radius:4px;
+  }
+  img,svg{max-width:100%;}
 
   /* ---------- TOP NAV ---------- */
   .nav{
@@ -54,11 +61,12 @@
   .brand-name .stack{color:var(--pink-deep);}
   .brand-name .your{color:var(--ink);}
   .brand-name .stock{color:var(--yellow-deep);}
-  .nav-right{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--muted);}
+  .nav-right{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--muted);flex:none;}
   .nav-tag{
     border:1px solid #ddd;
     border-radius:20px;
     padding:7px 16px;
+    white-space:nowrap;
   }
 
   /* ---------- HERO ---------- */
@@ -131,12 +139,13 @@
   }
   .name-block .ticker{
     font-size:16px;font-weight:800;color:var(--ink);
+    word-break:break-word;
   }
   .name-block .sector{
     font-size:12.5px;color:var(--muted);margin-top:2px;
   }
   .metric{text-align:right;}
-  .metric .big{font-size:18px;font-weight:800;}
+  .metric .big{font-size:18px;font-weight:800;white-space:nowrap;}
   .metric .small{font-size:11.5px;color:var(--muted);margin-top:2px;}
   .up{color:var(--green-up);}
 
@@ -170,7 +179,7 @@
     color:#9a6a00;
   }
 
-  .foot-note{
+  .metric .label-mobile{display:none;}
     margin-top:18px;
     font-size:12.5px;
     color:var(--muted);
@@ -214,10 +223,52 @@
 
   @media (max-width: 900px){
     .layout{grid-template-columns:1fr;}
-    .hero h1{font-size:32px;}
+  }
+
+  @media (max-width: 640px){
+    .nav{padding:14px 20px;}
+    .brand-name{font-size:18px;}
+    .nav-tag{font-size:12px;padding:6px 12px;}
+    .hero{padding:40px 18px 32px;}
+    .hero h1{font-size:28px;line-height:1.25;}
+    .hero p{font-size:15px;}
+    .stage{padding:24px 16px 50px;}
     .col-headers{display:none;}
-    .stock-row{grid-template-columns:30px 40px 1fr;row-gap:10px;}
-    .metric{text-align:left;}
+    .stock-row{
+      grid-template-columns:28px 40px 1fr;
+      grid-template-areas:
+        "rank logo name"
+        "cmp  cmp  cmp"
+        "tgt  tgt  tgt"
+        "detail detail detail";
+      row-gap:8px;
+      padding:16px 14px;
+    }
+    .rank-num{grid-area:rank;}
+    .logo-badge{grid-area:logo;width:36px;height:36px;}
+    .name-block{grid-area:name;}
+    .stock-row > .metric:nth-of-type(1){grid-area:cmp;}
+    .stock-row > .metric:nth-of-type(2){grid-area:tgt;}
+    .row-detail{grid-area:detail;}
+    .metric{
+      text-align:left;
+      display:flex;
+      align-items:baseline;
+      gap:8px;
+      padding-top:6px;
+      border-top:1px dashed var(--line);
+    }
+    .metric .label-mobile{
+      display:inline-block;
+      font-size:11px;
+      font-weight:700;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:0.4px;
+      width:80px;
+      flex:none;
+    }
+    .metric .small{margin-top:0;}
   }
 </style>
 </head>
@@ -234,7 +285,7 @@
     <div class="brand-name"><span class="stack">Stack</span><span class="your">Your</span><span class="stock">Stock</span></div>
   </div>
   <div class="nav-right">
-    <div class="nav-tag">🇮🇳 Indian Equities</div>
+    <div class="nav-tag" aria-label="India">IN · Indian Equities</div>
   </div>
 </div>
 
@@ -262,8 +313,8 @@
           <div class="ticker">Hindustan Aeronautics Ltd.</div>
           <div class="sector">Defence &amp; Aerospace · NSE: HAL</div>
         </div>
-        <div class="metric"><div class="big">₹4,650*</div><div class="small">approx.</div></div>
-        <div class="metric"><div class="big up">₹5,500–6,000</div><div class="small">analyst consensus</div></div>
+        <div class="metric"><span class="label-mobile">CMP</span><div><div class="big">₹4,650*</div><div class="small">approx.</div></div></div>
+        <div class="metric"><span class="label-mobile">Target</span><div><div class="big up">₹5,500–6,000</div><div class="small">analyst consensus</div></div></div>
 
         <div class="row-detail">
           <strong>Why it's ranked #1:</strong> HAL is positioned as the clearest single play on India's defence manufacturing build-out. A record defence capital outlay and a growing Tejas export pipeline (talks reported with Malaysia, Egypt and others) give the order book unusually long visibility for an Indian stock — into the seven-year range, per the cited research. Jet deliveries are reportedly growing ~20% year-on-year, and a new aero-engine programme adds a higher-margin revenue line for the next decade.
@@ -281,8 +332,8 @@
           <div class="ticker">Dixon Technologies (India) Ltd.</div>
           <div class="sector">Electronics Manufacturing · NSE: DIXON</div>
         </div>
-        <div class="metric"><div class="big">₹14,500*</div><div class="small">approx.</div></div>
-        <div class="metric"><div class="big up">₹16,000–20,000</div><div class="small">analyst consensus</div></div>
+        <div class="metric"><span class="label-mobile">CMP</span><div><div class="big">₹14,500*</div><div class="small">approx.</div></div></div>
+        <div class="metric"><span class="label-mobile">Target</span><div><div class="big up">₹16,000–20,000</div><div class="small">analyst consensus</div></div></div>
 
         <div class="row-detail">
           <strong>Why it's ranked #2:</strong> Dixon's entry into Apple's iPhone-assembly supply chain is described as the most compelling single growth catalyst in Indian electronics right now. Revenue is reported growing 65–70% in FY26, with the company potentially producing sub-assemblies for a quarter or more of India-made iPhones by FY27 — a jump from roughly ₹17,690 crore in FY24 revenue toward a much larger base. Multiple brokerages (Nuvama, ICICI Securities, JM Financial) are cited with bullish targets.
@@ -300,8 +351,8 @@
           <div class="ticker">State Bank of India</div>
           <div class="sector">Public Sector Banking · NSE: SBIN</div>
         </div>
-        <div class="metric"><div class="big">₹850*</div><div class="small">approx.</div></div>
-        <div class="metric"><div class="big up">₹1,100</div><div class="small">house target, Motilal Oswal</div></div>
+        <div class="metric"><span class="label-mobile">CMP</span><div><div class="big">₹850*</div><div class="small">approx.</div></div></div>
+        <div class="metric"><span class="label-mobile">Target</span><div><div class="big up">₹1,100</div><div class="small">house target, Motilal Oswal</div></div></div>
 
         <div class="row-detail">
           <strong>Why it's ranked #3:</strong> SBI is presented as the benchmark large-cap bet on India's formalising savings and credit story — as more households shift from cash to financial assets, the country's largest lender by scale benefits directly. The brokerage points to its scale, a comparatively clean balance sheet, and rising loan growth as the core thesis, identified under their internal "Quality, Growth, Longevity, Price" (QGLP) screening framework.
@@ -319,8 +370,8 @@
           <div class="ticker">HCL Technologies Ltd.</div>
           <div class="sector">IT Services · NSE: HCLTECH</div>
         </div>
-        <div class="metric"><div class="big">₹1,750*</div><div class="small">approx.</div></div>
-        <div class="metric"><div class="big up">₹2,150</div><div class="small">house target, Motilal Oswal</div></div>
+        <div class="metric"><span class="label-mobile">CMP</span><div><div class="big">₹1,750*</div><div class="small">approx.</div></div></div>
+        <div class="metric"><span class="label-mobile">Target</span><div><div class="big up">₹2,150</div><div class="small">house target, Motilal Oswal</div></div></div>
 
         <div class="row-detail">
           <strong>Why it's ranked #4:</strong> Framed as the operating-leverage play on the shift from traditional software services to AI-driven delivery — the thesis is that as HCL uses AI tooling to do more work with a smaller cost base, profit grows faster than expenses, supporting margin expansion alongside large deal wins.
@@ -338,8 +389,8 @@
           <div class="ticker">HDFC Bank Ltd.</div>
           <div class="sector">Private Sector Banking · NSE: HDFCBANK</div>
         </div>
-        <div class="metric"><div class="big">₹785*</div><div class="small">approx., late June 2026</div></div>
-        <div class="metric"><div class="big up">₹1,200–1,400</div><div class="small">consensus range</div></div>
+        <div class="metric"><span class="label-mobile">CMP</span><div><div class="big">₹785*</div><div class="small">approx., late June 2026</div></div></div>
+        <div class="metric"><span class="label-mobile">Target</span><div><div class="big up">₹1,200–1,400</div><div class="small">consensus range</div></div></div>
 
         <div class="row-detail">
           <strong>Why it's ranked #5:</strong> Included as a contrarian, post-correction entry case rather than a momentum pick. The stock has fallen sharply over the past year — partly on a March 2026 chairman resignation and broader macro pressure including FII outflows tied to US tariff announcements — bringing it well off its 52-week high. Research cited here frames quality large-caps bought into sentiment-driven weakness as a pattern that has historically rewarded patient, multi-year holders.
