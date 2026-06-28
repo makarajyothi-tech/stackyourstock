@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StackYourStock — Top 5 Indian Stocks to Watch, 2026</title>
+<style>
+  :root{
+    --ink:#1a1a2e;
+    --bg:#f4f2f0;
+    --line:#e3e0db;
+    --yellow:#ffc93c;
+    --yellow-deep:#f4a800;
+    --pink:#e63b8f;
+    --pink-deep:#c41f72;
+    --green-up:#1f9d55;
+    --muted:#6b6b78;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    color:var(--ink);
+    background:#fff;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  /* ---------- TOP NAV ---------- */
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 48px;
+    border-bottom:1px solid var(--line);
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .brand-mark{
+    width:38px;height:38px;
+    border-radius:11px;
+    background:linear-gradient(135deg,var(--yellow) 0%, var(--yellow) 48%, var(--pink) 52%, var(--pink) 100%);
+    display:flex;align-items:center;justify-content:center;
+    flex:none;
+  }
+  .brand-mark svg{display:block;}
+  .brand-name{
+    font-size:22px;
+    font-weight:800;
+    letter-spacing:-0.5px;
+  }
+  .brand-name .stack{color:var(--pink-deep);}
+  .brand-name .your{color:var(--ink);}
+  .brand-name .stock{color:var(--yellow-deep);}
+  .nav-right{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;color:var(--muted);}
+  .nav-tag{
+    border:1px solid #ddd;
+    border-radius:20px;
+    padding:7px 16px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    text-align:center;
+    padding:60px 24px 44px;
+  }
+  .hero h1{
+    font-size:46px;
+    font-weight:800;
+    margin:0 0 16px;
+    letter-spacing:-1px;
+  }
+  .grad-yellow{color:var(--yellow-deep);}
+  .grad-pink{
+    background:linear-gradient(90deg,var(--pink),var(--pink-deep));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero p{
+    font-size:17px;
+    color:#333;
+    margin:0;
+    max-width:640px;
+    margin:0 auto;
+  }
+
+  /* ---------- BODY LAYOUT ---------- */
+  .stage{
+    background:linear-gradient(180deg,#fff8e8 0%, var(--bg) 14%, var(--bg) 100%);
+    padding:36px 48px 70px;
+  }
+  .layout{
+    display:grid;
+    grid-template-columns:1fr 250px;
+    gap:36px;
+    max-width:1180px;
+    margin:0 auto;
+  }
+
+  /* ---------- MAIN COLUMN ---------- */
+  .col-headers{
+    display:grid;
+    grid-template-columns:36px 46px 1fr 110px 140px;
+    align-items:end;
+    padding:8px 6px 12px;
+    font-size:13px;
+    font-weight:800;
+    color:#444;
+  }
+  .col-headers .ch-right{text-align:right;}
+
+  .stock-row{
+    display:grid;
+    grid-template-columns:36px 46px 1fr 110px 140px;
+    align-items:center;
+    background:#fff;
+    border-radius:14px;
+    padding:18px 16px;
+    margin-bottom:14px;
+    box-shadow:0 1px 2px rgba(0,0,0,0.05);
+  }
+  .rank-num{font-size:18px;font-weight:800;color:#222;}
+  .logo-badge{
+    width:42px;height:42px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:11px;font-weight:800;color:#fff;
+    overflow:hidden;
+  }
+  .name-block .ticker{
+    font-size:16px;font-weight:800;color:var(--ink);
+  }
+  .name-block .sector{
+    font-size:12.5px;color:var(--muted);margin-top:2px;
+  }
+  .metric{text-align:right;}
+  .metric .big{font-size:18px;font-weight:800;}
+  .metric .small{font-size:11.5px;color:var(--muted);margin-top:2px;}
+  .up{color:var(--green-up);}
+
+  .row-detail{
+    grid-column:1 / -1;
+    margin-top:14px;
+    padding-top:14px;
+    border-top:1px solid var(--line);
+    font-size:14px;
+    line-height:1.65;
+    color:#333;
+  }
+  .row-detail strong{color:var(--ink);}
+  .src-line{
+    margin-top:10px;
+    font-size:12.5px;
+    color:var(--muted);
+  }
+  .src-line a{
+    color:var(--pink-deep);
+    font-weight:700;
+  }
+  .risk-tag{
+    display:inline-block;
+    margin-top:10px;
+    font-size:11.5px;
+    font-weight:700;
+    padding:4px 10px;
+    border-radius:12px;
+    background:#fff3d6;
+    color:#9a6a00;
+  }
+
+  .foot-note{
+    margin-top:18px;
+    font-size:12.5px;
+    color:var(--muted);
+    line-height:1.6;
+  }
+
+  /* ---------- RIGHT RAIL ---------- */
+  .rail-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:20px;
+    margin-bottom:18px;
+  }
+  .rail-title{
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:0.4px;
+    border-bottom:2px solid var(--ink);
+    padding-bottom:10px;
+    margin-bottom:12px;
+  }
+  .rail-card dl{margin:0;}
+  .rail-card dt{font-size:13.5px;font-weight:700;margin-top:12px;}
+  .rail-card dt:first-child{margin-top:0;}
+  .rail-card dd{margin:3px 0 0;font-size:12.5px;color:var(--muted);line-height:1.5;}
+
+  .rail-disclaimer{
+    font-size:12.5px;
+    color:var(--muted);
+    line-height:1.6;
+  }
+  .rail-disclaimer strong{display:block;color:var(--ink);font-size:13px;margin-bottom:6px;}
+
+  footer{
+    text-align:center;
+    padding:28px;
+    font-size:12px;
+    color:#999;
+  }
+
+  @media (max-width: 900px){
+    .layout{grid-template-columns:1fr;}
+    .hero h1{font-size:32px;}
+    .col-headers{display:none;}
+    .stock-row{grid-template-columns:30px 40px 1fr;row-gap:10px;}
+    .metric{text-align:left;}
+  }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="brand">
+    <div class="brand-mark">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <path d="M3 17L9 11L13 15L21 6" stroke="#1a1a2e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M15 6H21V12" stroke="#1a1a2e" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="brand-name"><span class="stack">Stack</span><span class="your">Your</span><span class="stock">Stock</span></div>
+  </div>
+  <div class="nav-right">
+    <div class="nav-tag">🇮🇳 Indian Equities</div>
+  </div>
+</div>
+
+<div class="hero">
+  <h1><span class="grad-yellow">Top 5</span> <span class="grad-pink">Indian Stocks</span> to Watch</h1>
+  <p>A short, sourced list of Indian stocks currently backed by published broker and analyst research — with the reasoning and the source for each pick.</p>
+</div>
+
+<div class="stage">
+  <div class="layout">
+
+    <!-- MAIN LIST -->
+    <div class="main-col">
+      <div class="col-headers">
+        <div></div><div></div><div>Stock</div>
+        <div class="ch-right">CMP</div>
+        <div class="ch-right">12M Target</div>
+      </div>
+
+      <!-- 1. HAL -->
+      <div class="stock-row">
+        <div class="rank-num">1</div>
+        <div class="logo-badge" style="background:#0b3d91;">HAL</div>
+        <div class="name-block">
+          <div class="ticker">Hindustan Aeronautics Ltd.</div>
+          <div class="sector">Defence &amp; Aerospace · NSE: HAL</div>
+        </div>
+        <div class="metric"><div class="big">₹4,650*</div><div class="small">approx.</div></div>
+        <div class="metric"><div class="big up">₹5,500–6,000</div><div class="small">analyst consensus</div></div>
+
+        <div class="row-detail">
+          <strong>Why it's ranked #1:</strong> HAL is positioned as the clearest single play on India's defence manufacturing build-out. A record defence capital outlay and a growing Tejas export pipeline (talks reported with Malaysia, Egypt and others) give the order book unusually long visibility for an Indian stock — into the seven-year range, per the cited research. Jet deliveries are reportedly growing ~20% year-on-year, and a new aero-engine programme adds a higher-margin revenue line for the next decade.
+          <br><strong>Watch for:</strong> the stock trades at a premium valuation, so it depends on execution against that long order book continuing on schedule.
+          <div class="src-line">Source: <a href="https://univest.in/blogs/best-stocks-to-buy-in-india-2026-top-picks" target="_blank">Univest Research, "Best Stocks to Buy in India 2026"</a> (SEBI-registered RA: Uniresearch Global, INH000013776)</div>
+          <span class="risk-tag">High conviction · Premium valuation</span>
+        </div>
+      </div>
+
+      <!-- 2. Dixon -->
+      <div class="stock-row">
+        <div class="rank-num">2</div>
+        <div class="logo-badge" style="background:#1a1a2e;">DIX</div>
+        <div class="name-block">
+          <div class="ticker">Dixon Technologies (India) Ltd.</div>
+          <div class="sector">Electronics Manufacturing · NSE: DIXON</div>
+        </div>
+        <div class="metric"><div class="big">₹14,500*</div><div class="small">approx.</div></div>
+        <div class="metric"><div class="big up">₹16,000–20,000</div><div class="small">analyst consensus</div></div>
+
+        <div class="row-detail">
+          <strong>Why it's ranked #2:</strong> Dixon's entry into Apple's iPhone-assembly supply chain is described as the most compelling single growth catalyst in Indian electronics right now. Revenue is reported growing 65–70% in FY26, with the company potentially producing sub-assemblies for a quarter or more of India-made iPhones by FY27 — a jump from roughly ₹17,690 crore in FY24 revenue toward a much larger base. Multiple brokerages (Nuvama, ICICI Securities, JM Financial) are cited with bullish targets.
+          <br><strong>Watch for:</strong> heavy customer concentration risk with Apple, and possible delays in PLI scheme disbursements that could pressure near-term margins. The valuation already prices in a lot of future growth.
+          <div class="src-line">Source: <a href="https://univest.in/blogs/best-stocks-to-buy-in-india-2026-top-picks" target="_blank">Univest Research, "Best Stocks to Buy in India 2026"</a></div>
+          <span class="risk-tag">High growth · High customer concentration risk</span>
+        </div>
+      </div>
+
+      <!-- 3. SBI -->
+      <div class="stock-row">
+        <div class="rank-num">3</div>
+        <div class="logo-badge" style="background:#1d4ed8;">SBI</div>
+        <div class="name-block">
+          <div class="ticker">State Bank of India</div>
+          <div class="sector">Public Sector Banking · NSE: SBIN</div>
+        </div>
+        <div class="metric"><div class="big">₹850*</div><div class="small">approx.</div></div>
+        <div class="metric"><div class="big up">₹1,100</div><div class="small">house target, Motilal Oswal</div></div>
+
+        <div class="row-detail">
+          <strong>Why it's ranked #3:</strong> SBI is presented as the benchmark large-cap bet on India's formalising savings and credit story — as more households shift from cash to financial assets, the country's largest lender by scale benefits directly. The brokerage points to its scale, a comparatively clean balance sheet, and rising loan growth as the core thesis, identified under their internal "Quality, Growth, Longevity, Price" (QGLP) screening framework.
+          <br><strong>Watch for:</strong> public-sector banks can lag private peers on cost efficiency, and the thesis assumes loan growth holds up through any rate-cut cycle.
+          <div class="src-line">Source: <a href="https://www.motilaloswal.com/learning-centre/2026/2/best-high-return-stocks-to-buy-in-india-2026" target="_blank">Motilal Oswal, "High Return Stocks for 2026"</a></div>
+          <span class="risk-tag">Large-cap stability · Lower volatility</span>
+        </div>
+      </div>
+
+      <!-- 4. HCL Tech -->
+      <div class="stock-row">
+        <div class="rank-num">4</div>
+        <div class="logo-badge" style="background:#0a66c2;">HCL</div>
+        <div class="name-block">
+          <div class="ticker">HCL Technologies Ltd.</div>
+          <div class="sector">IT Services · NSE: HCLTECH</div>
+        </div>
+        <div class="metric"><div class="big">₹1,750*</div><div class="small">approx.</div></div>
+        <div class="metric"><div class="big up">₹2,150</div><div class="small">house target, Motilal Oswal</div></div>
+
+        <div class="row-detail">
+          <strong>Why it's ranked #4:</strong> Framed as the operating-leverage play on the shift from traditional software services to AI-driven delivery — the thesis is that as HCL uses AI tooling to do more work with a smaller cost base, profit grows faster than expenses, supporting margin expansion alongside large deal wins.
+          <br><strong>Watch for:</strong> IT exporters earn mostly in US dollars but report in rupees, so a sharp rupee appreciation is flagged elsewhere in the same research set as a recurring earnings headwind across the sector, including for HCL.
+          <div class="src-line">Source: <a href="https://www.motilaloswal.com/learning-centre/2026/2/best-high-return-stocks-to-buy-in-india-2026" target="_blank">Motilal Oswal, "High Return Stocks for 2026"</a></div>
+          <span class="risk-tag">Currency-sensitive · Margin expansion thesis</span>
+        </div>
+      </div>
+
+      <!-- 5. HDFC Bank -->
+      <div class="stock-row">
+        <div class="rank-num">5</div>
+        <div class="logo-badge" style="background:#004c8f;">HDB</div>
+        <div class="name-block">
+          <div class="ticker">HDFC Bank Ltd.</div>
+          <div class="sector">Private Sector Banking · NSE: HDFCBANK</div>
+        </div>
+        <div class="metric"><div class="big">₹785*</div><div class="small">approx., late June 2026</div></div>
+        <div class="metric"><div class="big up">₹1,200–1,400</div><div class="small">consensus range</div></div>
+
+        <div class="row-detail">
+          <strong>Why it's ranked #5:</strong> Included as a contrarian, post-correction entry case rather than a momentum pick. The stock has fallen sharply over the past year — partly on a March 2026 chairman resignation and broader macro pressure including FII outflows tied to US tariff announcements — bringing it well off its 52-week high. Research cited here frames quality large-caps bought into sentiment-driven weakness as a pattern that has historically rewarded patient, multi-year holders.
+          <br><strong>Watch for:</strong> this is explicitly the riskiest pick on this list in terms of near-term sentiment — analyst target ranges across different reports vary widely, reflecting real disagreement about how fast net interest margins recover. Treat the range above as one of several published estimates, not a settled number.
+          <div class="src-line">Source: <a href="https://univest.in/blogs/hdfc-bank-share-price-target-2026" target="_blank">Univest Research, "HDFC Bank Share Price Target 2026"</a> · price level per <a href="https://www.indmoney.com/stocks/hdfc-bank-ltd-share-price" target="_blank">INDmoney, June 24, 2026</a></div>
+          <span class="risk-tag">Contrarian value · Wide target dispersion</span>
+        </div>
+      </div>
+
+      <div class="foot-note">
+        *Approximate current market prices (CMP) are drawn from the cited sources and shift daily — recheck live prices on your broker or exchange app before acting. This is editorial summarisation of third-party research, not a personalised recommendation.
+      </div>
+    </div>
+
+    <!-- RIGHT RAIL -->
+    <div class="rail">
+      <div class="rail-card">
+        <div class="rail-title">SECTORS COVERED</div>
+        <dl>
+          <dt>Defence &amp; Aerospace</dt><dd>Hindustan Aeronautics</dd>
+          <dt>Electronics Manufacturing</dt><dd>Dixon Technologies</dd>
+          <dt>Banking — Public &amp; Private</dt><dd>SBI, HDFC Bank</dd>
+          <dt>IT Services</dt><dd>HCL Technologies</dd>
+        </dl>
+      </div>
+
+      <div class="rail-card rail-disclaimer">
+        <strong>Not investment advice</strong>
+        This page summarises publicly published broker and analyst research for general information only. Stock prices and targets change daily. Past performance and analyst targets do not guarantee future results. Please consult a SEBI-registered financial advisor before investing.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>StackYourStock · Stock content sourced and summarised from Univest Research and Motilal Oswal, June 2026.</footer>
+
+</body>
+</html>
